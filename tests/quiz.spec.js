@@ -313,6 +313,7 @@ describe("Quiz", () => {
 
       // Call the `filterQuestionsByDifficulty()` method with a number between 1 and 3 as a 1st argument.
       quiz.filterQuestionsByDifficulty(2);
+      console.log(quiz.questions, "inside test");
 
       // Check if the questions array has been filtered correctly
       expect(quiz.questions).toEqual([questions[1], questions[2]]);
