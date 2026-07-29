@@ -30,7 +30,7 @@ class Quiz {
     checkAnswer = (answer) => {
         let question = this.getQuestion();
         if (answer === question.answer) {
-            return this.correctAnswers++;
+            this.correctAnswers++;
         }
     };
 
