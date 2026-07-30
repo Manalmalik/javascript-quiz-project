@@ -74,6 +74,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let timer;
 
+  
+
+    timer = setInterval(() => {
+      quiz.timeRemaining--;
+
+  
+      const timerElement =document.querySelector("#timeRemaining");
+    timerElement.innerHTML =  quiz.timeRemaining;
+
+    if(timerElement){
+      const minutes = Math.floor(quiz.timeRemaining / 60);
+      const seconds = quiz.timeRemaining % 60;
+      timerElement.textContent = `${minutes}: ${seconds < 10 ? "0" : ""} ${seconds}`
+
+    }
+
+      if(quiz.timeRemaining <= 0) {
+        clearInterval(timer);
+
+        showResults();
+      }
+
+
+    }, 1000)
+
+  
+
+  
+
   /************  EVENT LISTENERS  ************/
 
   nextButton.addEventListener("click", nextButtonHandler);
@@ -178,6 +207,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showResults() {
     // YOUR CODE HERE:
+    clearInterval(timer);
+
+    
     //
     // 1. Hide the quiz view (div#quizView)
     quizView.style.display = "none";
@@ -190,12 +222,41 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function restartButtonHandler() {
+
+  
+    
+    //quiz.timeRemaining = 60;
     quizView.style.display = "flex";
     endView.style.display = "none";
 
     quiz.currentQuestionIndex = 0;
     quiz.correctAnswers = 0;
     quiz.shuffleQuestions();
+    //clearInterval(timer);
     showQuestion();
-  }
+
+     timer = setInterval(() => {
+      quiz.timeRemaining--;
+
+  
+      const timerElement =document.querySelector("#timeRemaining");
+    timerElement.innerHTML =  quiz.timeRemaining;
+
+    if(timerElement){
+      const minutes = Math.floor(quiz.timeRemaining / 60);
+      const seconds = quiz.timeRemaining % 60;
+      timerElement.textContent = `${minutes}: ${seconds < 10 ? "0" : ""} ${seconds}`
+
+    }
+
+      if(quiz.timeRemaining <= 0) {
+        clearInterval(timer);
+
+        showResults();
+      }
+    
+  
+  }, 1000);
+}
+
 });
